@@ -1,0 +1,8 @@
+.customButton{
+    width: 20%;
+    background-color: brown;
+    border: 1px solid #000;
+    border-radius: 10px;
+    color: #fff;
+    margin: 5px;
+}
