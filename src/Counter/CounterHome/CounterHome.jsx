@@ -14,7 +14,6 @@ return(
     <CounterOutput output={props.ctr}></CounterOutput>
     <CounterControl increment={props.onIncrement} decrement={props.onDecrement} addFive = {props.onAddFive} subtractFive={props.onSubtractFive}></CounterControl>
     <button onClick={()=>props.onStoreResult(props.ctr)}>Store</button>
-    
     <ul>
         {storedResults}
     </ul>

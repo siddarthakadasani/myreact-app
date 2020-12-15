@@ -14,7 +14,7 @@ function App(props) {
   let [showPersons,showPersonsSetState]=useState({showPersons:false});
   let [counter,setCounter] = useState({
     count:0
-})
+});
 
   const deleteNameHandler = (name)=>{
     console.log(name)
@@ -28,8 +28,8 @@ function App(props) {
     props.history.push('/redux')
   }
   
-  let person = <PersonList list = {persons.person} click={(name) => deleteNameHandler(name)}  nameChange={(event,name) => nameChangeHandler(event,name)} ></PersonList>
-  let showContent = showPersons.showPersons ? person:null;
+  // let person = <PersonList list = {persons.person} click={(name) => deleteNameHandler(name)}  nameChange={(event,name) => nameChangeHandler(event,name)} ></PersonList>
+  // let showContent = showPersons.showPersons ? person:null;
   return (
     <BrowserRouter>
     <div className="App">

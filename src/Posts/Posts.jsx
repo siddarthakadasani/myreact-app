@@ -2,20 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router';
 import Post from './Post/Post';
 import DetailedPost from '../Posts/DetailedPost/DetailedPost';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import * as postActions from '../store/actions/postActions';
 const Posts =(props)=>{
     console.log(props,"props in posts");
-    const [posts,postSetState] = useState({
-        posts:[]
-    });
+  
     useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/posts').then((response)=>{
-            console.log(response);
-           let data = response.data.slice(0,10);
-          postSetState({
-              posts:data
-          })
-        })
+      props.getPosts();
     console.log(props,"in posts");
     },[])
 
@@ -25,7 +18,7 @@ const Posts =(props)=>{
         props.history.push(props.match.url+'post/'+post.id)
 
     }
-    let post = posts.posts.map((post)=> <Post title={post.title} key={post.id} body={post.body} click={()=> onPostClick(post)}></Post>);
+    let post = props.posts.map((post)=> <Post title={post.title} key={post.id} body={post.body} click={()=> onPostClick(post)}></Post>);
     
     return(
         <div>
@@ -35,4 +28,18 @@ const Posts =(props)=>{
     )
     
 }
-export default Posts;
+
+const mapStateToProps =  (state)=>{
+return {
+    posts:state.postReducer.posts
+}
+}
+
+const mapDispatchToProps = (dispatch)=>{
+return {
+    getPosts:()=> dispatch(postActions.fetchPosts())
+}
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Posts);

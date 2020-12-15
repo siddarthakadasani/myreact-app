@@ -6,17 +6,19 @@ import * as serviceWorker from './serviceWorker';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import reducer from './store/reducers/counterReducer';
 import resultReducer from './store/reducers/resultReducer';
+import postsReducer from './store/reducers/postsReducer';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 const rootReducer = combineReducers({
   ctrReducer:reducer,
-  resReducer:resultReducer
+  resReducer:resultReducer,
+  postReducer:postsReducer
 });
 const store = createStore(rootReducer,applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
-    <App />
+    <App /> 
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')
